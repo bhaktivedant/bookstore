@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form</title>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  
+  <style>
+    
+    
+    #toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #28a745;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      font-weight: 500;
+      z-index: 9999;
+      display: none;
+      animation: slideDown 0.5s ease, fadeOut 0.5s ease 3s forwards;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translate(-50%, -30px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; transform: translate(-50%, -20px); }
+    }
+  </style>
+</head>
+<body>
+<section class="py-3 py-md-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+        <div class="card border border-light-subtle rounded-3 shadow-sm">
+          <div class="card-body p-3 p-md-4 p-xl-5">
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-4">Upload Book Details</h2>
+            
+            <form id="signupForm" method="post" enctype="multipart/form-data" autocomplete="off">
+              {% csrf_token %}
+              <h3 style="color: #28a745;">{{success}}</h3>
+
+              <div class="row gy-2 overflow-hidden">
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="mbname" id="fn" placeholder="Brand Name" required>
+                    
+                    <span id="sfn"></span>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="file" class="form-control" name="mbimage" id="mob" placeholder="Image" required>
+                    
+                    <span id="smb"></span>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="number" class="form-control" name="price" id="em" placeholder="Price" required>
+                    
+                    <span id="sem"></span>
+                  </div>
+                </div>
+                <textarea placeholder="Descrpition" name="des"></textarea>
+                <input type="submit" value="Upload" name="register">
+
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div id="toast">🎉 Sign Up Successful!</div>
+
+<!-- <script>
+  
+  document.querySelector('#fn').addEventListener('change', fname);
+  document.querySelector('#mob').addEventListener('change', mobile);
+  document.querySelector('#em').addEventListener('change', email);
+  document.querySelector('#pas').addEventListener('change', password);
+  document.querySelector('#cpsw').addEventListener('change', con_password);
+
+ 
+  function fname() {
+    let f = document.querySelector('#fn').value.trim();
+    const regf = /^[a-zA-Z ]+$/;
+    if (!regf.test(f)) {
+      showError('#sfn', 'Only alphabets allowed');
+      return false;
+    } else {
+      clearError('#sfn');
+      return true;
+    }
+  }
+
+  function mobile() {
+    let m = document.querySelector('#mob').value.trim();
+    const regm = /^[0-9]{10}$/;
+    if (!regm.test(m)) {
+      showError('#smb', 'Enter a valid 10-digit number');
+      return false;
+    } else {
+      clearError('#smb');
+      return true;
+    }
+  }
+
+  function email() {
+    let e = document.querySelector('#em').value.trim();
+    const rege = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+    if (!rege.test(e)) {
+      showError('#sem', 'Invalid email format');
+      return false;
+    } else {
+      clearError('#sem');
+      return true;
+    }
+  }
+
+  function password() {
+    let p = document.querySelector('#pas').value;
+    const regp = /^[a-zA-Z0-9@#$!*]{6,16}$/;
+    if (!regp.test(p)) {
+      showError('#spas', 'Password must contain 6-16 letters/numbers/symbols');
+      return false;
+    } else {
+      clearError('#spas');
+      return true;
+    }
+  }
+
+  function con_password() {
+    let p = document.querySelector('#pas').value;
+    let cp = document.querySelector('#cpsw').value;
+    if (p !== cp) {
+      showError('#scpsw', 'Passwords do not match');
+      return false;
+    } else {
+      clearError('#scpsw');
+      return true;
+    }
+  }
+
+  function showError(id, msg) {
+    document.querySelector(id).innerHTML = msg;
+    document.querySelector(id).style.color = 'red';
+  }
+
+  function clearError(id) {
+    document.querySelector(id).innerHTML = '';
+  }
+
+  
+  function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.display = 'block';
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 3500);
+  }
+
+  
+  document.querySelector('#signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    let valid = fname() & mobile() & email() & password() & con_password();
+    if (valid) {
+      showToast('🎉 Sign Up Successful!');
+      document.querySelector('#signupForm').reset();
+    }
+  });
+</script> -->
+</body>
+</html>

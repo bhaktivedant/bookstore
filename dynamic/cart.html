@@ -1,0 +1,15 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% for c in data %}
+ <div class="book">
+    <h2>Mobile: {{c.prodobj.mbname}}</h2>
+    <h3>Price: {{c.prodobj.prc}}</h3>
+    <h4>Number: {{c.qty}}</h4>
+    <p>{{c.prodobj.des}}</p>
+    <div class="cover" style="background-image: url({{c.prodobj.mbim.url}});">
+    </div>
+    <a href="{% url 'cartdelete' c.id %}">Delete</a>
+</div>
+{% endfor %}
+ 
+<h2>Total price: {{total}}</h2>
